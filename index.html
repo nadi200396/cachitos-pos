@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Cachitos México - POS</title>
+  
+  <!-- Configuración PWA para Celular -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Cachitos POS">
+
+  <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 50%, #f0f9ff 100%);
+      --card-bg: #ffffff;
+      --primary-sky: #0284c7;
+      --sky-light: #38bdf8;
+      --sky-soft: #e0f2fe;
+      --primary-dark: #0369a1;
+      --accent-gold: #d97706;
+      --text-dark: #0f172a;
+      --text-muted: #475569;
+      --border-color: #cbd5e1;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      padding: 14px;
+      min-height: 100vh;
+    }
+
+    .pos-container {
+      width: 100%;
+      max-width: 450px;
+      margin: 0 auto;
+    }
+
+    /* Cabecera sin Logo - Solo Nombre y Frase Motivacional */
+    .header-card {
+      background-color: var(--card-bg);
+      border-radius: 22px;
+      padding: 24px 20px 20px 20px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(2, 132, 199, 0.12);
+      margin-bottom: 16px;
+      border: 1px solid #bae6fd;
+    }
+
+    .brand-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .motivational-quote {
+      font-size: 14px;
+      color: #0369a1;
+      font-style: italic;
+      line-height: 1.4;
+      background-color: #f0f9ff;
+      padding: 10px 14px;
+      border-radius: 14px;
+      border: 1px dashed #7dd3fc;
+    }
+
+    /* Formulario */
+    .form-card {
+      background-color: var(--card-bg);
+      border-radius: 22px;
+      padding: 20px 18px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+      border: 1px solid #e2e8f0;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-control {
+      width: 100%;
+      height: 50px;
+      padding: 0 14px;
+      font-size: 16px;
+      border: 2px solid var(--border-color);
+      border-radius: 12px;
+      background-color: #f8fafc;
+      color: var(--text-dark);
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary-sky);
+      background-color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.25);
+    }
+
+    select.form-control {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22293%22%20height%3D%22293%22%3E%3Cpath%20fill%3D%22%230284c7%22%20d%3D%22M201.4%2092.1L146.7%20147%2091.9%2092.1c-4.7-4.7-12.3-4.7-17%200L57%20109.9c-4.7%204.7-4.7%2012.3%200%2017l72.6%2072.5c4.7%204.7%2012.3%204.7%2017%200l72.6-72.5c4.7-4.7%204.7-12.3%200-17l-17.9-17.8c-4.7-4.7-12.3-4.7-17.1%200z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      background-size: 12px;
+    }
+
+    /* Monto destacado en verde suave */
+    input#monto.form-control {
+      font-weight: 700;
+      color: #047857;
+      background-color: #f0fdf4;
+      border-color: #a7f3d0;
+    }
+
+    input#monto.form-control:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+    }
+
+    .row-2 {
+      display: flex;
+      gap: 12px;
+    }
+
+    .row-2 .form-group {
+      flex: 1;
+    }
+
+    /* Botón Registrar */
+    .btn-submit {
+      width: 100%;
+      height: 56px;
+      background: linear-gradient(135deg, #0284c7, #38bdf8);
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
+      margin-top: 8px;
+      transition: transform 0.1s ease, box-shadow 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    .btn-submit:disabled {
+      background: #94a3b8;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    /* Mensajes de Notificación */
+    .alert {
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 14px;
+      display: none;
+    }
+
+    .alert-success {
+      background-color: #dcfce7;
+      color: #15803d;
+      border: 1px solid #86efac;
+    }
+
+    .alert-error {
+      background-color: #fee2e2;
+      color: #b91c1c;
+      border: 1px solid #fca5a5;
+    }
+
+    /* Spinner */
+    .spinner {
+      width: 22px;
+      height: 22px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="pos-container">
+    
+    <!-- Cabecera - Solo Nombre y Frase Motivacional -->
+    <div class="header-card">
+      <h1 class="brand-title">Cachitos México</h1>
+      <div class="motivational-quote">
+        "Cada <strong>Cachito</strong> cuenta, cada venta impulsa tu arte, Arlina ✨"
+      </div>
+    </div>
+
+    <!-- Formulario POS -->
+    <div class="form-card">
+      <form id="posForm">
+        
+        <!-- Nombre del Cliente -->
+        <div class="form-group">
+          <label class="form-label" for="cliente">Nombre del Cliente</label>
+          <input class="form-control" type="text" id="cliente" required placeholder="Ej. María López">
+        </div>
+
+        <!-- Canal de Contacto -->
+        <div class="form-group">
+          <label class="form-label" for="canal">Canal de Contacto</label>
+          <select class="form-control" id="canal" required>
+            <option value="" disabled selected>Selecciona el canal...</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Facebook">Facebook</option>
+            <option value="Instagram">Instagram</option>
+            <option value="TikTok">TikTok</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <!-- Categoría del Producto -->
+        <div class="form-group">
+          <label class="form-label" for="categoria">Categoría</label>
+          <select class="form-control" id="categoria" required>
+            <option value="" disabled selected>Selecciona categoría...</option>
+            <option value="Banner">Banner</option>
+            <option value="Cuadro">Cuadro</option>
+            <option value="Ventana">Ventana</option>
+            <option value="Recuerditos">Recuerditos</option>
+            <option value="Pintura en tela">Pintura en tela</option>
+          </select>
+        </div>
+
+        <!-- Monto e Importe + Estatus -->
+        <div class="row-2">
+          <div class="form-group">
+            <label class="form-label" for="monto">Monto ($)</label>
+            <input class="form-control" type="number" id="monto" step="0.01" min="0" required placeholder="0.00">
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="estatus">Estatus</label>
+            <select class="form-control" id="estatus" required>
+              <option value="Apartado">Apartado</option>
+              <option value="Liquidado" selected>Liquidado</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Fecha de Entrega -->
+        <div class="form-group">
+          <label class="form-label" for="fechaEntrega">Fecha de Entrega</label>
+          <input class="form-control" type="date" id="fechaEntrega" required>
+        </div>
+
+        <!-- Botón Enviar -->
+        <button class="btn-submit" type="submit" id="btnSubmit">
+          <div class="spinner" id="btnSpinner"></div>
+          <span id="btnText">Registrar Venta ✨</span>
+        </button>
+
+      </form>
+
+      <!-- Banners de Notificación -->
+      <div class="alert alert-success" id="successAlert">
+        ¡Venta registrada con éxito en Google Sheets! 🎉
+      </div>
+      <div class="alert alert-error" id="errorAlert">
+        Hubo un error al registrar la venta. Inténtalo de nuevo.
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // ==========================================
+    // INSERTA AQUÍ LA URL DE TU GOOGLE APPS SCRIPT
+    // ==========================================
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzaQnxz9vCC4tQXBLF99B2YmMHq3ep58Xu3zI3fgPlTo9jewoMNqfL4qUullk-lRhojVw/exec";
+
+    // Establecer la fecha de hoy por defecto en la fecha de entrega
+    document.addEventListener("DOMContentLoaded", () => {
+      const today = new Date().toISOString().split("T")[0];
+      document.getElementById("fechaEntrega").value = today;
+    });
+
+    // Enviar datos al registrar venta
+    const posForm = document.getElementById("posForm");
+    const btnSubmit = document.getElementById("btnSubmit");
+    const btnSpinner = document.getElementById("btnSpinner");
+    const btnText = document.getElementById("btnText");
+    const successAlert = document.getElementById("successAlert");
+    const errorAlert = document.getElementById("errorAlert");
+
+    posForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Ocultar alertas
+      successAlert.style.display = "none";
+      errorAlert.style.display = "none";
+
+      // Animación de envío
+      btnSubmit.disabled = true;
+      btnSpinner.style.display = "block";
+      btnText.textContent = "Guardando...";
+
+      // Capturar marca de tiempo exacta de la transacción
+      const now = new Date();
+      const timestamp = now.toLocaleString("es-MX", { 
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      });
+
+      // Extraer y formatear datos
+      const formData = {
+        timestamp: timestamp,
+        cliente: document.getElementById("cliente").value.trim(),
+        canal: document.getElementById("canal").value,
+        categoria: document.getElementById("categoria").value,
+        monto: parseFloat(document.getElementById("monto").value),
+        estatus: document.getElementById("estatus").value,
+        fechaEntrega: document.getElementById("fechaEntrega").value
+      };
+
+      try {
+        // Enviar vía POST a Google Apps Script
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData)
+        });
+
+        // Mostrar éxito y limpiar formulario
+        successAlert.style.display = "block";
+        posForm.reset();
+        
+        // Volver a colocar la fecha actual
+        document.getElementById("fechaEntrega").value = new Date().toISOString().split("T")[0];
+
+      } catch (error) {
+        console.error("Error al enviar:", error);
+        errorAlert.style.display = "block";
+      } finally {
+        // Restaurar botón
+        btnSubmit.disabled = false;
+        btnSpinner.style.display = "none";
+        btnText.textContent = "Registrar Venta ✨";
+
+        // Ocultar alerta de éxito automáticamente tras 4 segundos
+        setTimeout(() => {
+          successAlert.style.display = "none";
+        }, 4000);
+      }
+    });
+  </script>
+</body>
+</html>
