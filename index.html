@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Cachitos México - POS</title>
+  <title>Cachitos México - POS & Gestión</title>
   
   <!-- Configuración PWA para Celular -->
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -20,6 +20,7 @@
       --primary-dark: #0369a1;
       --accent-gold: #d97706;
       --accent-green: #10b981;
+      --accent-purple: #8b5cf6;
       --text-dark: #0f172a;
       --text-muted: #475569;
       --border-color: #cbd5e1;
@@ -38,66 +39,82 @@
       color: var(--text-dark);
       display: flex;
       justify-content: center;
-      padding: 12px;
+      padding: 10px;
       min-height: 100vh;
     }
 
     .pos-container {
       width: 100%;
-      max-width: 460px;
+      max-width: 480px;
       margin: 0 auto;
     }
 
-    /* Cabecera - Nombre y Frase Motivacional */
+    /* Cabecera con Logo */
     .header-card {
       background-color: var(--card-bg);
       border-radius: 20px;
-      padding: 20px 16px 16px 16px;
+      padding: 16px 14px;
       text-align: center;
       box-shadow: 0 6px 18px rgba(2, 132, 199, 0.12);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       border: 1px solid #bae6fd;
     }
 
+    .brand-logo-img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 8px auto;
+      display: block;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+      border: 3px solid #ffffff;
+    }
+
     .brand-title {
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 800;
       color: var(--primary-dark);
       letter-spacing: -0.5px;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
 
     .motivational-quote {
-      font-size: 13px;
+      font-size: 12px;
       color: #0369a1;
       font-style: italic;
-      line-height: 1.4;
+      line-height: 1.3;
       background-color: #f0f9ff;
-      padding: 8px 12px;
-      border-radius: 12px;
+      padding: 6px 10px;
+      border-radius: 10px;
       border: 1px dashed #7dd3fc;
     }
 
-    /* Sistema de Pestañas */
-    .tabs-container {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 14px;
+    /* Pestañas de Navegación */
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 4px;
+      margin-bottom: 12px;
     }
 
     .tab-btn {
-      flex: 1;
-      padding: 12px 8px;
-      font-size: 14px;
+      padding: 8px 2px;
+      font-size: 10.5px;
       font-weight: 700;
       border: 2px solid var(--primary-sky);
-      border-radius: 14px;
+      border-radius: 12px;
       background-color: #ffffff;
       color: var(--primary-dark);
       cursor: pointer;
       transition: all 0.2s ease;
       text-align: center;
       box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
     }
 
     .tab-btn.active {
@@ -111,7 +128,7 @@
     .card-panel {
       background-color: var(--card-bg);
       border-radius: 20px;
-      padding: 18px 16px;
+      padding: 16px 14px;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
       border: 1px solid #e2e8f0;
       display: none;
@@ -122,24 +139,24 @@
     }
 
     .form-group {
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .form-label {
       display: block;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--primary-dark);
-      margin-bottom: 5px;
+      margin-bottom: 4px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
     .form-control {
       width: 100%;
-      height: 48px;
-      padding: 0 14px;
-      font-size: 15px;
+      height: 46px;
+      padding: 0 12px;
+      font-size: 14px;
       border: 2px solid var(--border-color);
       border-radius: 12px;
       background-color: #f8fafc;
@@ -158,106 +175,92 @@
       appearance: none;
       background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22293%22%20height%3D%22293%22%3E%3Cpath%20fill%3D%22%230284c7%22%20d%3D%22M201.4%2092.1L146.7%20147%2091.9%2092.1c-4.7-4.7-12.3-4.7-17%200L57%20109.9c-4.7%204.7-4.7%2012.3%200%2017l72.6%2072.5c4.7%204.7%2012.3%204.7%2017%200l72.6-72.5c4.7-4.7%204.7-12.3%200-17l-17.9-17.8c-4.7-4.7-12.3-4.7-17.1%200z%22%2F%3E%3C%2Fsvg%3E");
       background-repeat: no-repeat;
-      background-position: right 14px center;
+      background-position: right 12px center;
       background-size: 12px;
     }
 
     .row-2 {
       display: flex;
-      gap: 10px;
+      gap: 8px;
     }
 
     .row-2 .form-group {
       flex: 1;
     }
 
-    /* Tarjeta de Resumen Financiero Dinámico */
+    /* Resúmenes Financieros */
     .summary-box {
       background-color: #f0fdf4;
       border: 1px solid #a7f3d0;
-      border-radius: 14px;
-      padding: 12px 14px;
-      margin-bottom: 14px;
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
     }
 
     .summary-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 14px;
-      margin-bottom: 6px;
+      font-size: 13px;
+      margin-bottom: 4px;
       color: #065f46;
     }
 
     .summary-row:last-child {
       margin-bottom: 0;
-      padding-top: 6px;
+      padding-top: 4px;
       border-top: 1px dashed #6ee7b7;
       font-weight: 800;
-      font-size: 15px;
+      font-size: 14px;
     }
 
     .status-badge {
       display: inline-block;
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 12px;
+      padding: 3px 8px;
+      border-radius: 16px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
     }
 
-    .badge-apartado {
-      background-color: #fef3c7;
-      color: #b45309;
-      border: 1px solid #fde68a;
-    }
+    .badge-apartado { background-color: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+    .badge-liquidado { background-color: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+    .badge-pendiente { background-color: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+    .badge-entregado { background-color: #dbeafe; color: #1e40af; border: 1px solid #bfdbfe; }
 
-    .badge-liquidado {
-      background-color: #dcfce7;
-      color: #15803d;
-      border: 1px solid #86efac;
-    }
-
-    /* Botones de Envío */
+    /* Botones */
     .btn-submit {
       width: 100%;
-      height: 52px;
+      height: 48px;
       background: linear-gradient(135deg, #0284c7, #38bdf8);
       color: #ffffff;
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 700;
       border: none;
-      border-radius: 14px;
+      border-radius: 12px;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
-      margin-top: 6px;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+      margin-top: 4px;
       transition: transform 0.1s ease, box-shadow 0.2s ease;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .btn-submit:active {
-      transform: scale(0.98);
-    }
-
-    .btn-submit:disabled {
-      background: #94a3b8;
-      box-shadow: none;
-      cursor: not-allowed;
-    }
+    .btn-submit:active { transform: scale(0.98); }
+    .btn-submit:disabled { background: #94a3b8; box-shadow: none; cursor: not-allowed; }
 
     .btn-refresh {
       background-color: #f1f5f9;
       color: var(--primary-dark);
       border: 1px solid var(--border-color);
-      padding: 8px 12px;
+      padding: 8px 10px;
       border-radius: 10px;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       cursor: pointer;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -265,51 +268,210 @@
       width: 100%;
     }
 
-    /* Mensajes de Notificación */
-    .alert {
-      padding: 12px;
+    /* Botones de Categorías de Gastos */
+    .gasto-cats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .btn-cat-gasto {
+      background-color: #f8fafc;
+      border: 2px solid var(--border-color);
       border-radius: 12px;
-      font-size: 14px;
+      padding: 10px 8px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .btn-cat-gasto.selected {
+      border-color: var(--primary-sky);
+      background-color: #e0f2fe;
+      color: var(--primary-dark);
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.2);
+    }
+
+    .subgasto-card {
+      background-color: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .subgasto-title {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 4px;
+    }
+
+    /* Calendario Mejorado */
+    .cal-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .cal-stat-card {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 10px;
+      padding: 6px 4px;
+      text-align: center;
+    }
+
+    .cal-stat-num {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .cal-stat-lbl {
+      font-size: 9.5px;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .calendar-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .btn-month-nav {
+      background-color: var(--sky-soft);
+      border: 1px solid #7dd3fc;
+      color: var(--primary-dark);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .day-name {
+      text-align: center;
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--primary-dark);
+      padding: 2px 0;
+    }
+
+    .day-cell {
+      background-color: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      min-height: 48px;
+      padding: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--text-dark);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+
+    .day-cell.other-month { opacity: 0.35; background-color: #f1f5f9; }
+    .day-cell.today { border-color: var(--primary-sky); background-color: #e0f2fe; }
+    .day-cell.selected-day { border-color: var(--accent-gold); box-shadow: 0 0 0 2px var(--accent-gold); }
+
+    .event-dots {
+      display: flex;
+      gap: 2px;
+      margin-top: 2px;
+    }
+
+    .dot-badge {
+      font-size: 9px;
+      font-weight: 800;
+      background-color: #f59e0b;
+      color: #ffffff;
+      padding: 1px 4px;
+      border-radius: 6px;
+      line-height: 1;
+    }
+
+    .dot-badge.done {
+      background-color: #10b981;
+    }
+
+    .delivery-item-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .delivery-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4px;
+    }
+
+    /* Alertas */
+    .alert {
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 13px;
       font-weight: 600;
       text-align: center;
-      margin-top: 12px;
+      margin-top: 10px;
       display: none;
     }
 
-    .alert-success {
-      background-color: #dcfce7;
-      color: #15803d;
-      border: 1px solid #86efac;
-    }
-
-    .alert-error {
-      background-color: #fee2e2;
-      color: #b91c1c;
-      border: 1px solid #fca5a5;
-    }
+    .alert-success { background-color: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+    .alert-error { background-color: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
 
     /* Spinner */
     .spinner {
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255,255,255,0.3);
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,0.3);
       border-radius: 50%;
       border-top-color: #fff;
       animation: spin 0.8s linear infinite;
       display: none;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
 
   <div class="pos-container">
     
-    <!-- Cabecera -->
+    <!-- Cabecera con Logo -->
     <div class="header-card">
+      <img src="logo.jpg" alt="Cachitos México Logo" class="brand-logo-img" onerror="this.style.display='none'">
       <h1 class="brand-title">Cachitos México</h1>
       <div class="motivational-quote">
         "Cada <strong>Cachito</strong> cuenta, cada venta impulsa tu arte, Arlina ✨"
@@ -317,13 +479,26 @@
     </div>
 
     <!-- Pestañas de Navegación -->
-    <div class="tabs-container">
-      <button class="tab-btn active" id="tabSaleBtn" onclick="switchTab('sale')">➕ Nueva Venta</button>
-      <button class="tab-btn" id="tabAbonoBtn" onclick="switchTab('abono')">💰 Abonos / Liquidación</button>
+    <div class="nav-grid">
+      <button class="tab-btn active" id="tab1" onclick="switchTab('sale')">
+        <span>➕</span> Venta
+      </button>
+      <button class="tab-btn" id="tab2" onclick="switchTab('abono')">
+        <span>💰</span> Abono
+      </button>
+      <button class="tab-btn" id="tab3" onclick="switchTab('gasto')">
+        <span>💸</span> Gastos
+      </button>
+      <button class="tab-btn" id="tab4" onclick="switchTab('cal')">
+        <span>📅</span> Agenda
+      </button>
+      <button class="tab-btn" id="tab5" onclick="switchTab('balance')">
+        <span>📊</span> Balance
+      </button>
     </div>
 
     <!-- PESTAÑA 1: NUEVA VENTA -->
-    <div class="card-panel active" id="salePanel">
+    <div class="card-panel active" id="panelSale">
       <form id="posForm">
         
         <div class="form-group">
@@ -344,14 +519,15 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="categoria">Categoría</label>
+          <label class="form-label" for="categoria">Categoría / Producto</label>
           <select class="form-control" id="categoria" required>
             <option value="" disabled selected>Selecciona categoría...</option>
             <option value="Banner">Banner</option>
             <option value="Cuadro">Cuadro</option>
             <option value="Ventana">Ventana</option>
             <option value="Recuerditos">Recuerditos</option>
-            <option value="Pintura en tela">Pintura en tela</option>
+            <option value="Pintura en tela">Pintura en tela (Chamarra, Tennis, Bag)</option>
+            <option value="Talleres">Talleres / Cursos</option>
           </select>
         </div>
 
@@ -366,7 +542,6 @@
           </div>
         </div>
 
-        <!-- Resumen de Calculo para la Venta -->
         <div class="summary-box">
           <div class="summary-row">
             <span>Saldo Restante:</span>
@@ -379,7 +554,7 @@
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="fechaEntrega">Fecha de Entrega</label>
+          <label class="form-label" for="fechaEntrega">Fecha de Entrega / Evento</label>
           <input class="form-control" type="date" id="fechaEntrega" required>
         </div>
 
@@ -390,20 +565,13 @@
 
       </form>
 
-      <div class="alert alert-success" id="successAlert">
-        ¡Venta registrada con éxito en Google Sheets! 🎉
-      </div>
-      <div class="alert alert-error" id="errorAlert">
-        Hubo un error al registrar la venta. Inténtalo de nuevo.
-      </div>
+      <div class="alert alert-success" id="successAlert">¡Venta registrada con éxito en Google Sheets! 🎉</div>
+      <div class="alert alert-error" id="errorAlert">Error al registrar la venta.</div>
     </div>
 
     <!-- PESTAÑA 2: ABONOS Y LIQUIDACIÓN -->
-    <div class="card-panel" id="abonoPanel">
-      
-      <button class="btn-refresh" onclick="fetchPendingAccounts()">
-        🔄 Actualizar lista de pedidos pendientes
-      </button>
+    <div class="card-panel" id="panelAbono">
+      <button class="btn-refresh" onclick="fetchPendingAccounts()">🔄 Actualizar lista de pedidos pendientes</button>
 
       <div class="form-group">
         <label class="form-label" for="selectPendingClient">Seleccionar Cliente Pendiente</label>
@@ -412,9 +580,7 @@
         </select>
       </div>
 
-      <!-- Resumen del Pedido Seleccionado -->
       <div id="pendingDetailsBox" style="display: none;">
-        
         <div class="summary-box">
           <div class="summary-row">
             <span>Categoría / Pedido:</span>
@@ -430,17 +596,15 @@
           </div>
           <div class="summary-row">
             <span>Saldo Restante Actual:</span>
-            <span id="pSaldoText" style="color: #b45309; font-size:16px;">$0.00</span>
+            <span id="pSaldoText" style="color: #b45309; font-size:15px;">$0.00</span>
           </div>
         </div>
 
-        <!-- Input para nuevo abono -->
         <div class="form-group">
           <label class="form-label" for="nuevoAbonoInput">Monto del Nuevo Abono ($)</label>
           <input class="form-control" type="number" id="nuevoAbonoInput" step="0.01" min="0.01" placeholder="0.00" oninput="calcAbonoAmounts()">
         </div>
 
-        <!-- Proyección tras el abono -->
         <div class="summary-box" style="background-color: #eff6ff; border-color: #bfdbfe;">
           <div class="summary-row" style="color: #1e40af;">
             <span>Nuevo Saldo Restante:</span>
@@ -456,66 +620,229 @@
           <div class="spinner" id="btnSpinnerAbono"></div>
           <span id="btnTextAbono">Registrar Abono / Liquidar ✨</span>
         </button>
-
       </div>
 
-      <div class="alert alert-success" id="successAbonoAlert">
-        ¡Abono registrado y saldo actualizado con éxito! 🎉
-      </div>
-      <div class="alert alert-error" id="errorAbonoAlert">
-        Hubo un error al guardar el abono. Inténtalo de nuevo.
+      <div class="alert alert-success" id="successAbonoAlert">¡Abono registrado con éxito! 🎉</div>
+      <div class="alert alert-error" id="errorAbonoAlert">Error al registrar el abono.</div>
+    </div>
+
+    <!-- PESTAÑA 3: REGISTRO DE GASTOS OPEX -->
+    <div class="card-panel" id="panelGasto">
+      <div class="form-label" style="margin-bottom: 8px;">Selecciona la categoría del gasto:</div>
+      
+      <div class="gasto-cats-grid">
+        <button class="btn-cat-gasto" onclick="selectGastoCategory('textil')">👕 Pintura en Tela</button>
+        <button class="btn-cat-gasto" onclick="selectGastoCategory('obras')">🖼️ Obras / Arte</button>
+        <button class="btn-cat-gasto" onclick="selectGastoCategory('talleres')">🎨 Talleres / Cursos</button>
+        <button class="btn-cat-gasto" onclick="selectGastoCategory('generales')">🛠️ Gastos Generales</button>
       </div>
 
+      <div class="form-group">
+        <label class="form-label" for="fechaGasto">Fecha del Desembolso</label>
+        <input class="form-control" type="date" id="fechaGasto" required>
+      </div>
+
+      <div id="subgastoContainer" style="display: none;">
+        <div class="subgasto-card" id="subgastoCard">
+          <div class="subgasto-title" id="subgastoTitle">Desglose de Insumos</div>
+          <div id="subgastoFields"></div>
+        </div>
+
+        <div class="summary-box" style="background-color: #fef2f2; border-color: #fecaca;">
+          <div class="summary-row" style="color: #991b1b; font-size:14px; font-weight:800;">
+            <span>Total Gasto Desembolsado:</span>
+            <span id="totalGastoCalculado">$0.00</span>
+          </div>
+        </div>
+
+        <button class="btn-submit" type="button" id="btnSubmitGasto" onclick="submitGasto()">
+          <div class="spinner" id="btnSpinnerGasto"></div>
+          <span id="btnTextGasto">Guardar Gasto OpEx 💸</span>
+        </button>
+      </div>
+
+      <div class="alert alert-success" id="successGastoAlert">¡Gasto registrado con éxito! 💸</div>
+      <div class="alert alert-error" id="errorGastoAlert">Error al registrar el gasto.</div>
+    </div>
+
+    <!-- PESTAÑA 4: CALENDARIO DE ENTREGAS Y AGENDA -->
+    <div class="card-panel" id="panelCal">
+      
+      <!-- Resumen Estadístico Superior -->
+      <div class="cal-stats-grid">
+        <div class="cal-stat-card">
+          <div class="cal-stat-num" id="statTodayNum">0</div>
+          <div class="cal-stat-lbl">🚨 Para Hoy</div>
+        </div>
+        <div class="cal-stat-card">
+          <div class="cal-stat-num" id="statWeekNum">0</div>
+          <div class="cal-stat-lbl">⏳ Esta Semana</div>
+        </div>
+        <div class="cal-stat-card">
+          <div class="cal-stat-num" id="statMonthNum">0</div>
+          <div class="cal-stat-lbl">📌 Mes Actual</div>
+        </div>
+      </div>
+
+      <button class="btn-refresh" onclick="fetchCalendarEvents()">🔄 Actualizar Agenda de Entregas</button>
+
+      <div class="calendar-header">
+        <button class="btn-month-nav" onclick="changeMonth(-1)">◀</button>
+        <div class="calendar-title" id="calMonthTitle">Octubre 2026</div>
+        <button class="btn-month-nav" onclick="changeMonth(1)">▶</button>
+      </div>
+
+      <div class="calendar-grid" id="calendarGrid"></div>
+
+      <!-- Detalle y Cronograma de Entregas -->
+      <div id="dayDetailBox" style="margin-top: 12px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <div class="subgasto-title" id="selectedDateTitle" style="margin-bottom:0;">Cronograma de Entregas del Mes</div>
+          <button id="btnResetCalFilter" style="display:none; font-size:11px; padding:3px 8px; border-radius:6px; background:#e0f2fe; color:#0284c7; border:1px solid #7dd3fc; font-weight:700; cursor:pointer;" onclick="renderAllUpcomingDeliveries()">👁️ Ver todo el mes</button>
+        </div>
+        <div id="dayItemsList"></div>
+      </div>
+
+      <div class="alert alert-success" id="successCalAlert">¡Estatus de entrega actualizado! ✨</div>
+    </div>
+
+    <!-- PESTAÑA 5: BALANCE Y MARGEN -->
+    <div class="card-panel" id="panelBalance">
+      <button class="btn-refresh" onclick="fetchBalanceData()">🔄 Actualizar Balance Financiero</button>
+
+      <div class="summary-box" style="background-color: #f0fdf4; border-color: #86efac; margin-bottom:10px;">
+        <div class="summary-row" style="color:#166534; font-weight:700;">
+          <span>💵 Ingresos Totales (Cobrados):</span>
+          <span id="balIngresosText" style="font-size:15px;">$0.00</span>
+        </div>
+      </div>
+
+      <div class="summary-box" style="background-color: #fef2f2; border-color: #fca5a5; margin-bottom:10px;">
+        <div class="summary-row" style="color:#991b1b; font-weight:700;">
+          <span>💸 Gastos Totales (OpEx):</span>
+          <span id="balGastosText" style="font-size:15px;">$0.00</span>
+        </div>
+      </div>
+
+      <div class="summary-box" style="background-color: #f0f9ff; border-color: #7dd3fc; padding:12px;">
+        <div class="summary-row" style="color:#0369a1; font-size:15px; font-weight:800; margin-bottom:6px;">
+          <span>✨ Utilidad Neta Real:</span>
+          <span id="balUtilidadText">$0.00</span>
+        </div>
+        <div class="summary-row" style="color:#0284c7; font-size:14px; font-weight:800;">
+          <span>📈 Margen de Ganancia:</span>
+          <span id="balMargenText">0.0%</span>
+        </div>
+      </div>
+      
+      <div style="font-size:11px; color:#64748b; text-align:center; margin-top:8px; font-style:italic;">
+        *Calculado en tiempo real comparando cobros y compras de Google Sheets.
+      </div>
     </div>
 
   </div>
 
   <script>
-    // ==========================================
-    // INSERTA AQUÍ LA URL DE TU GOOGLE APPS SCRIPT
-    // ==========================================
+    // =========================================
+    // URL DE GOOGLE APPS SCRIPT
+    // =========================================
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzaQnxz9vCC4tQXBLF99B2YmMHq3ep58Xu3zI3fgPlTo9jewoMNqfL4qUullk-lRhojVw/exec";
 
     let pendingAccountsList = [];
+    let calendarEventsList = [];
+    let currentCalDate = new Date();
+    let selectedGastoCategory = "";
 
-    // Helper para formatear valores monetarios de manera segura
-    function formatMoney(val) {
-      const num = parseFloat(val);
-      if (isNaN(num) || num > 100000000) return "$0.00";
-      return "$" + num.toFixed(2);
-    }
+    const gastoSchemas = {
+      textil: {
+        title: "Pintura en Tela / Textiles",
+        fields: [
+          { id: "g_soporte", label: "Soporte (Tote bag, Tennis, Chamarra, Playera)", placeholder: "0.00" },
+          { id: "g_pinturas", label: "Pinturas, Barnices y Pinceles Textiles", placeholder: "0.00" },
+          { id: "g_empaques", label: "Empaques, Cajas y Envolturas", placeholder: "0.00" },
+          { id: "g_papeleria", label: "Papelería, Tarjetas y Stickers", placeholder: "0.00" },
+          { id: "g_envio", label: "Envío / Transporte al lugar de entrega", placeholder: "0.00" },
+          { id: "g_publicidad", label: "Publicidad / Promoción de esta línea", placeholder: "0.00" },
+          { id: "g_otros", label: "Otros Gastos Directos", placeholder: "0.00" }
+        ]
+      },
+      obras: {
+        title: "Obras y Artesanías (Banner, Cuadro, Ventana)",
+        fields: [
+          { id: "g_soporte", label: "Soporte (Bastidor, Lona, Marco, Cristal, Pieza)", placeholder: "0.00" },
+          { id: "g_pinturas", label: "Pinturas, Barnices y Material de Arte", placeholder: "0.00" },
+          { id: "g_empaques", label: "Empaques y Envolturas", placeholder: "0.00" },
+          { id: "g_papeleria", label: "Papelería y Etiquetas", placeholder: "0.00" },
+          { id: "g_envio", label: "Envío / Transporte de entrega", placeholder: "0.00" },
+          { id: "g_publicidad", label: "Publicidad / Promoción de este producto", placeholder: "0.00" },
+          { id: "g_otros", label: "Otros Gastos Directos", placeholder: "0.00" }
+        ]
+      },
+      talleres: {
+        title: "Talleres y Cursos",
+        fields: [
+          { id: "g_soporte", label: "Materiales para Alumnos / Insumos de la clase", placeholder: "0.00" },
+          { id: "g_renta", label: "Renta de Espacio / Sede", placeholder: "0.00" },
+          { id: "g_viaticos", label: "Transporte / Viáticos al taller", placeholder: "0.00" },
+          { id: "g_refrigerio", label: "Coffee Break / Refrigerios / Snacks", placeholder: "0.00" },
+          { id: "g_papeleria", label: "Papelería y Guías Impresas", placeholder: "0.00" },
+          { id: "g_publicidad", label: "Publicidad del Taller", placeholder: "0.00" },
+          { id: "g_otros", label: "Otros Gastos del Taller", placeholder: "0.00" }
+        ]
+      },
+      generales: {
+        title: "Gastos Generales / Fijos del Taller",
+        fields: [
+          { id: "g_herramientas", label: "Herramientas (Atriles, Aros de luz, Organizadores)", placeholder: "0.00" },
+          { id: "g_renta_luz", label: "Renta, Luz e Internet del Taller", placeholder: "0.00" },
+          { id: "g_pub_marca", label: "Publicidad General de la Marca", placeholder: "0.00" },
+          { id: "g_otros", label: "Otros Gastos Generales", placeholder: "0.00" }
+        ]
+      }
+    };
 
     document.addEventListener("DOMContentLoaded", () => {
       const today = new Date().toISOString().split("T")[0];
       document.getElementById("fechaEntrega").value = today;
+      document.getElementById("fechaGasto").value = today;
+      renderCalendar();
+      fetchCalendarEvents();
     });
 
-    // Cambio de Pestañas
+    // NAVEGACIÓN ENTRE PESTAÑAS
     function switchTab(tab) {
-      document.getElementById("tabSaleBtn").classList.remove("active");
-      document.getElementById("tabAbonoBtn").classList.remove("active");
-      document.getElementById("salePanel").classList.remove("active");
-      document.getElementById("abonoPanel").classList.remove("active");
+      document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".card-panel").forEach(p => p.classList.remove("active"));
 
       if (tab === 'sale') {
-        document.getElementById("tabSaleBtn").classList.add("active");
-        document.getElementById("salePanel").classList.add("active");
-      } else {
-        document.getElementById("tabAbonoBtn").classList.add("active");
-        document.getElementById("abonoPanel").classList.add("active");
+        document.getElementById("tab1").classList.add("active");
+        document.getElementById("panelSale").classList.add("active");
+      } else if (tab === 'abono') {
+        document.getElementById("tab2").classList.add("active");
+        document.getElementById("panelAbono").classList.add("active");
         fetchPendingAccounts();
+      } else if (tab === 'gasto') {
+        document.getElementById("tab3").classList.add("active");
+        document.getElementById("panelGasto").classList.add("active");
+      } else if (tab === 'cal') {
+        document.getElementById("tab4").classList.add("active");
+        document.getElementById("panelCal").classList.add("active");
+        fetchCalendarEvents();
+      } else if (tab === 'balance') {
+        document.getElementById("tab5").classList.add("active");
+        document.getElementById("panelBalance").classList.add("active");
+        fetchBalanceData();
       }
     }
 
-    // Cálculo dinámico para la pestaña "Nueva Venta"
+    // PESTAÑA 1: NUEVA VENTA
     function calcSaleAmounts() {
       const total = parseFloat(document.getElementById("montoTotal").value) || 0;
       const pago = parseFloat(document.getElementById("montoPago").value) || 0;
       let saldo = total - pago;
       if (saldo < 0) saldo = 0;
 
-      document.getElementById("saleSaldoText").textContent = formatMoney(saldo);
-      
+      document.getElementById("saleSaldoText").textContent = "$" + saldo.toFixed(2);
       const badge = document.getElementById("saleStatusBadge");
       if (saldo <= 0.001 && total > 0) {
         badge.textContent = "Liquidado";
@@ -526,11 +853,8 @@
       }
     }
 
-    // Registrar Nueva Venta (Pestaña 1)
-    const posForm = document.getElementById("posForm");
-    posForm.addEventListener("submit", async (e) => {
+    document.getElementById("posForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-
       const btnSubmit = document.getElementById("btnSubmit");
       const btnSpinner = document.getElementById("btnSpinner");
       const btnText = document.getElementById("btnText");
@@ -549,7 +873,7 @@
       let saldo = total - pago;
       if (saldo < 0) saldo = 0;
 
-      const estatus = (saldo <= 0.001 && total > 0) ? "Liquidado" : "Apartado";
+      const estatusPago = (saldo <= 0.001 && total > 0) ? "Liquidado" : "Apartado";
 
       const now = new Date();
       const timestamp = now.toLocaleString("es-MX", { 
@@ -566,8 +890,9 @@
         montoTotal: total,
         montoPagado: pago,
         saldoRestante: saldo,
-        estatus: estatus,
-        fechaEntrega: document.getElementById("fechaEntrega").value
+        estatusPago: estatusPago,
+        fechaEntrega: document.getElementById("fechaEntrega").value,
+        estatusEntrega: "Pendiente"
       };
 
       try {
@@ -579,10 +904,9 @@
         });
 
         successAlert.style.display = "block";
-        posForm.reset();
+        document.getElementById("posForm").reset();
         document.getElementById("fechaEntrega").value = new Date().toISOString().split("T")[0];
         calcSaleAmounts();
-
       } catch (error) {
         console.error("Error al enviar:", error);
         errorAlert.style.display = "block";
@@ -594,11 +918,10 @@
       }
     });
 
-    // Obtener cuentas pendientes desde Google Sheets (Pestaña 2)
+    // PESTAÑA 2: ABONOS Y LIQUIDACIÓN
     async function fetchPendingAccounts() {
       const select = document.getElementById("selectPendingClient");
-      const detailsBox = document.getElementById("pendingDetailsBox");
-      detailsBox.style.display = "none";
+      document.getElementById("pendingDetailsBox").style.display = "none";
       select.innerHTML = '<option value="" disabled selected>Cargando pendientes...</option>';
 
       try {
@@ -612,8 +935,7 @@
           json.apartados.forEach((item, index) => {
             const opt = document.createElement("option");
             opt.value = index;
-            const saldoFormatted = formatMoney(item.saldoRestante);
-            opt.textContent = `${item.cliente} (${item.categoria}) - Resta: ${saldoFormatted}`;
+            opt.textContent = `${item.cliente} (${item.categoria}) - Resta: $${parseFloat(item.saldoRestante).toFixed(2)}`;
             select.appendChild(opt);
           });
         } else {
@@ -625,29 +947,25 @@
       }
     }
 
-    // Al seleccionar un cliente de la lista
     function onSelectClientChange() {
-      const select = document.getElementById("selectPendingClient");
-      const idx = select.value;
+      const idx = document.getElementById("selectPendingClient").value;
       if (idx === "") return;
 
       const item = pendingAccountsList[idx];
       if (!item) return;
 
       document.getElementById("pCatText").textContent = item.categoria;
-      document.getElementById("pTotalText").textContent = formatMoney(item.montoTotal);
-      document.getElementById("pPagadoText").textContent = formatMoney(item.montoPagado);
-      document.getElementById("pSaldoText").textContent = formatMoney(item.saldoRestante);
+      document.getElementById("pTotalText").textContent = "$" + parseFloat(item.montoTotal).toFixed(2);
+      document.getElementById("pPagadoText").textContent = "$" + parseFloat(item.montoPagado).toFixed(2);
+      document.getElementById("pSaldoText").textContent = "$" + parseFloat(item.saldoRestante).toFixed(2);
 
       document.getElementById("nuevoAbonoInput").value = "";
       document.getElementById("pendingDetailsBox").style.display = "block";
       calcAbonoAmounts();
     }
 
-    // Cálculo dinámico de abonos
     function calcAbonoAmounts() {
-      const select = document.getElementById("selectPendingClient");
-      const idx = select.value;
+      const idx = document.getElementById("selectPendingClient").value;
       if (idx === "") return;
 
       const item = pendingAccountsList[idx];
@@ -657,7 +975,7 @@
       let nuevoSaldo = saldoActual - abono;
       if (nuevoSaldo < 0) nuevoSaldo = 0;
 
-      document.getElementById("pProyectadoSaldo").textContent = formatMoney(nuevoSaldo);
+      document.getElementById("pProyectadoSaldo").textContent = "$" + nuevoSaldo.toFixed(2);
 
       const badge = document.getElementById("pProyectadoStatus");
       if (nuevoSaldo <= 0.001 && abono > 0) {
@@ -669,10 +987,8 @@
       }
     }
 
-    // Enviar Abono a Google Sheets
     async function submitAbono() {
-      const select = document.getElementById("selectPendingClient");
-      const idx = select.value;
+      const idx = document.getElementById("selectPendingClient").value;
       if (idx === "") return;
 
       const item = pendingAccountsList[idx];
@@ -687,20 +1003,118 @@
       const btnSpinner = document.getElementById("btnSpinnerAbono");
       const btnText = document.getElementById("btnTextAbono");
       const successAlert = document.getElementById("successAbonoAlert");
-      const errorAlert = document.getElementById("errorAbonoAlert");
-
-      successAlert.style.display = "none";
-      errorAlert.style.display = "none";
 
       btnSubmit.disabled = true;
       btnSpinner.style.display = "block";
       btnText.textContent = "Procesando...";
 
-      const abonoData = {
-        action: "registerAbono",
-        rowIndex: item.rowIndex,
-        cliente: item.cliente,
-        nuevoAbono: abono
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            action: "registerAbono",
+            rowIndex: item.rowIndex,
+            nuevoAbono: abono
+          })
+        });
+
+        successAlert.style.display = "block";
+        document.getElementById("pendingDetailsBox").style.display = "none";
+        setTimeout(() => {
+          fetchPendingAccounts();
+          successAlert.style.display = "none";
+        }, 1500);
+      } catch (err) {
+        console.error("Error al abona:", err);
+      } finally {
+        btnSubmit.disabled = false;
+        btnSpinner.style.display = "none";
+        btnText.textContent = "Registrar Abono / Liquidar ✨";
+      }
+    }
+
+    // PESTAÑA 3: GASTOS OPEX
+    function selectGastoCategory(catKey) {
+      selectedGastoCategory = catKey;
+      document.querySelectorAll(".btn-cat-gasto").forEach(b => b.classList.remove("selected"));
+      event.target.classList.add("selected");
+
+      const schema = gastoSchemas[catKey];
+      document.getElementById("subgastoTitle").textContent = schema.title;
+
+      const fieldsDiv = document.getElementById("subgastoFields");
+      fieldsDiv.innerHTML = "";
+
+      schema.fields.forEach(f => {
+        const group = document.createElement("div");
+        group.className = "form-group";
+        group.innerHTML = `
+          <label class="form-label">${f.label}</label>
+          <input class="form-control" type="number" id="${f.id}" step="0.01" min="0" placeholder="${f.placeholder}" oninput="calcGastoTotal()">
+        `;
+        fieldsDiv.appendChild(group);
+      });
+
+      document.getElementById("subgastoContainer").style.display = "block";
+      calcGastoTotal();
+    }
+
+    function calcGastoTotal() {
+      if (!selectedGastoCategory) return;
+      const schema = gastoSchemas[selectedGastoCategory];
+      let total = 0;
+
+      schema.fields.forEach(f => {
+        const val = parseFloat(document.getElementById(f.id).value) || 0;
+        total += val;
+      });
+
+      document.getElementById("totalGastoCalculado").textContent = "$" + total.toFixed(2);
+    }
+
+    async function submitGasto() {
+      if (!selectedGastoCategory) return;
+      const schema = gastoSchemas[selectedGastoCategory];
+      let total = 0;
+      let parts = [];
+
+      schema.fields.forEach(f => {
+        const val = parseFloat(document.getElementById(f.id).value) || 0;
+        if (val > 0) {
+          total += val;
+          parts.push(`${f.label}: $${val.toFixed(2)}`);
+        }
+      });
+
+      if (total <= 0) {
+        alert("Por favor ingresa al menos un importe de gasto.");
+        return;
+      }
+
+      const btnSubmit = document.getElementById("btnSubmitGasto");
+      const btnSpinner = document.getElementById("btnSpinnerGasto");
+      const btnText = document.getElementById("btnTextGasto");
+      const successAlert = document.getElementById("successGastoAlert");
+
+      btnSubmit.disabled = true;
+      btnSpinner.style.display = "block";
+      btnText.textContent = "Guardando...";
+
+      const now = new Date();
+      const timestamp = now.toLocaleString("es-MX", { 
+        year: 'numeric', month: '2-digit', day: '2-digit',
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+      });
+
+      const gastoData = {
+        action: "registerGasto",
+        timestamp: timestamp,
+        fechaGasto: document.getElementById("fechaGasto").value,
+        categoriaGasto: schema.title,
+        desgloseDetalle: parts.join(" | "),
+        montoTotalGasto: total
       };
 
       try {
@@ -708,24 +1122,301 @@
           method: "POST",
           mode: "no-cors",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(abonoData)
+          body: JSON.stringify(gastoData)
         });
 
         successAlert.style.display = "block";
-        document.getElementById("pendingDetailsBox").style.display = "none";
-        
-        setTimeout(() => {
-          fetchPendingAccounts();
-          successAlert.style.display = "none";
-        }, 1500);
-
+        document.getElementById("subgastoContainer").style.display = "none";
+        document.querySelectorAll(".btn-cat-gasto").forEach(b => b.classList.remove("selected"));
+        setTimeout(() => successAlert.style.display = "none", 4000);
       } catch (err) {
-        console.error("Error al registrar abono:", err);
-        errorAlert.style.display = "block";
+        console.error(err);
       } finally {
         btnSubmit.disabled = false;
         btnSpinner.style.display = "none";
-        btnText.textContent = "Registrar Abono / Liquidar ✨";
+        btnText.textContent = "Guardar Gasto OpEx 💸";
+      }
+    }
+
+    // PESTAÑA 4: CALENDARIO DE ENTREGAS Y AGENDA
+    
+    function parseFechaParts(dateStr) {
+      if (!dateStr) return null;
+      var str = String(dateStr).trim();
+      if (!str) return null;
+
+      // 1. YYYY-MM-DD or YYYY-MM-DDTHH:mm:ss
+      var isoMatch = str.match(/^(\d{4})[\/\-](\d{1,2})[\/\-](\d{1,2})/);
+      if (isoMatch) {
+        var year = parseInt(isoMatch[1], 10);
+        var month = parseInt(isoMatch[2], 10) - 1;
+        var day = parseInt(isoMatch[3], 10);
+        var formatted = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        return { year: year, month: month, day: day, formatted: formatted };
+      }
+
+      // 2. DD/MM/YYYY or DD-MM-YYYY
+      var ddmmMatch = str.match(/^(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/);
+      if (ddmmMatch) {
+        var day = parseInt(ddmmMatch[1], 10);
+        var month = parseInt(ddmmMatch[2], 10) - 1;
+        var year = parseInt(ddmmMatch[3], 10);
+        var formatted = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        return { year: year, month: month, day: day, formatted: formatted };
+      }
+
+      // 3. Fallback
+      var d = new Date(str);
+      if (!isNaN(d.getTime())) {
+        var year = d.getFullYear();
+        var month = d.getMonth();
+        var day = d.getDate();
+        var formatted = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        return { year: year, month: month, day: day, formatted: formatted };
+      }
+
+      return null;
+    }
+
+    async function fetchCalendarEvents() {
+      try {
+        const res = await fetch(SCRIPT_URL + "?action=getDeliveries");
+        const json = await res.json();
+        if (json.status === "success") {
+          calendarEventsList = json.deliveries;
+          updateCalStats();
+          renderCalendar();
+          renderAllUpcomingDeliveries();
+        }
+      } catch (err) {
+        console.error("Error al cargar agenda:", err);
+      }
+    }
+
+    function updateCalStats() {
+      const todayStr = new Date().toISOString().split("T")[0];
+      const todayParts = parseFechaParts(todayStr);
+      const now = new Date();
+      const year = currentCalDate.getFullYear();
+      const month = currentCalDate.getMonth();
+
+      // Entregas Hoy
+      const todayEvents = calendarEventsList.filter(e => {
+        const p = parseFechaParts(e.fechaEntrega);
+        return p && p.formatted === todayStr && e.estatusEntrega !== "Entregado";
+      });
+      document.getElementById("statTodayNum").textContent = todayEvents.length;
+
+      // Entregas Esta Semana (próximos 7 días)
+      const nextWeekDate = new Date();
+      nextWeekDate.setDate(now.getDate() + 7);
+      const todayStart = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+      const weekEvents = calendarEventsList.filter(e => {
+        if (!e.fechaEntrega || e.estatusEntrega === "Entregado") return false;
+        const p = parseFechaParts(e.fechaEntrega);
+        if (!p) return false;
+        const d = new Date(p.year, p.month, p.day);
+        return d >= todayStart && d <= nextWeekDate;
+      });
+      document.getElementById("statWeekNum").textContent = weekEvents.length;
+
+      // Entregas Mes Actual
+      const monthEvents = calendarEventsList.filter(e => {
+        if (!e.fechaEntrega || e.estatusEntrega === "Entregado") return false;
+        const p = parseFechaParts(e.fechaEntrega);
+        return p && p.year === year && p.month === month;
+      });
+      document.getElementById("statMonthNum").textContent = monthEvents.length;
+    }
+
+    function changeMonth(delta) {
+      currentCalDate.setMonth(currentCalDate.getMonth() + delta);
+      updateCalStats();
+      renderCalendar();
+      renderAllUpcomingDeliveries();
+    }
+
+    function renderCalendar() {
+      const year = currentCalDate.getFullYear();
+      const month = currentCalDate.getMonth();
+      const monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+      document.getElementById("calMonthTitle").textContent = `${monthNames[month]} ${year}`;
+      const grid = document.getElementById("calendarGrid");
+      grid.innerHTML = "";
+
+      const dayNames = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
+      dayNames.forEach(d => {
+        const div = document.createElement("div");
+        div.className = "day-name";
+        div.textContent = d;
+        grid.appendChild(div);
+      });
+
+      const firstDayIndex = new Date(year, month, 1).getDay();
+      const totalDays = new Date(year, month + 1, 0).getDate();
+      const prevMonthDays = new Date(year, month, 0).getDate();
+
+      // Mes anterior
+      for (let x = firstDayIndex; x > 0; x--) {
+        const cell = document.createElement("div");
+        cell.className = "day-cell other-month";
+        cell.textContent = prevMonthDays - x + 1;
+        grid.appendChild(cell);
+      }
+
+      const todayStr = new Date().toISOString().split("T")[0];
+
+      // Mes actual
+      for (let i = 1; i <= totalDays; i++) {
+        const cell = document.createElement("div");
+        cell.className = "day-cell";
+        
+        const dayNumSpan = document.createElement("span");
+        dayNumSpan.textContent = i;
+        cell.appendChild(dayNumSpan);
+
+        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(i).padStart(2, '0')}`;
+        if (dateStr === todayStr) cell.classList.add("today");
+
+        // Filtrar pedidos de este día usando parseFechaParts
+        const dayEvents = calendarEventsList.filter(e => {
+          const p = parseFechaParts(e.fechaEntrega);
+          return p && p.year === year && p.month === month && p.day === i;
+        });
+
+        if (dayEvents.length > 0) {
+          const dotsDiv = document.createElement("div");
+          dotsDiv.className = "event-dots";
+          
+          const pendingCount = dayEvents.filter(e => e.estatusEntrega !== "Entregado").length;
+          const badge = document.createElement("div");
+          
+          if (pendingCount > 0) {
+            badge.className = "dot-badge";
+            badge.textContent = `${dayEvents.length} 📦`;
+          } else {
+            badge.className = "dot-badge done";
+            badge.textContent = `${dayEvents.length} ✓`;
+          }
+          
+          dotsDiv.appendChild(badge);
+          cell.appendChild(dotsDiv);
+        }
+
+        cell.onclick = () => selectCalendarDay(dateStr, dayEvents, cell);
+        grid.appendChild(cell);
+      }
+    }
+
+    function selectCalendarDay(dateStr, events, cellElem) {
+      document.querySelectorAll(".day-cell").forEach(c => c.classList.remove("selected-day"));
+      if (cellElem) cellElem.classList.add("selected-day");
+
+      document.getElementById("btnResetCalFilter").style.display = "inline-block";
+      const title = document.getElementById("selectedDateTitle");
+      const list = document.getElementById("dayItemsList");
+
+      title.textContent = `Agenda del ${dateStr}`;
+      list.innerHTML = "";
+
+      if (events.length === 0) {
+        list.innerHTML = `<div style="font-size:13px; color:#64748b; text-align:center; padding:12px; background:#f8fafc; border-radius:10px;">Sin entregas agendadas para este día 🌿</div>`;
+      } else {
+        renderDeliveryCards(events, list);
+      }
+    }
+
+    function renderAllUpcomingDeliveries() {
+      document.querySelectorAll(".day-cell").forEach(c => c.classList.remove("selected-day"));
+      document.getElementById("btnResetCalFilter").style.display = "none";
+      const title = document.getElementById("selectedDateTitle");
+      const list = document.getElementById("dayItemsList");
+
+      const year = currentCalDate.getFullYear();
+      const month = currentCalDate.getMonth();
+
+      // Filtrar pedidos del mes seleccionado ordenados por fecha
+      const monthEvents = calendarEventsList.filter(e => {
+        if (!e.fechaEntrega) return false;
+        const p = parseFechaParts(e.fechaEntrega);
+        return p && p.year === year && p.month === month;
+      }).sort((a,b) => (a.fechaEntrega || '').localeCompare(b.fechaEntrega || ''));
+
+      title.textContent = `Cronograma del Mes (${monthEvents.length} Pedidos)`;
+      list.innerHTML = "";
+
+      if (monthEvents.length === 0) {
+        list.innerHTML = `<div style="font-size:13px; color:#64748b; text-align:center; padding:14px; background:#f8fafc; border-radius:10px;">No hay entregas agendadas para este mes ✨</div>`;
+      } else {
+        renderDeliveryCards(monthEvents, list);
+      }
+    }
+
+    function renderDeliveryCards(events, containerElem) {
+      events.forEach(ev => {
+        const card = document.createElement("div");
+        card.className = "delivery-item-card";
+        
+        const isDone = ev.estatusEntrega === "Entregado";
+        const isPaid = ev.saldoRestante <= 0.001;
+
+        card.innerHTML = `
+          <div class="delivery-item-header">
+            <div>
+              <strong style="font-size:14px; color:#0369a1;">${ev.cliente}</strong>
+              <span style="font-size:11px; color:#64748b; margin-left:6px;">📅 ${ev.fechaEntrega || 'Sin fecha'}</span>
+            </div>
+            <span class="status-badge ${isDone ? 'badge-entregado' : 'badge-pendiente'}">${ev.estatusEntrega}</span>
+          </div>
+          <div style="font-size:12px; color:#475569; margin-bottom:8px; line-height:1.4;">
+            📦 <strong>Categoría:</strong> ${ev.categoria}<br>
+            💵 <strong>Total:</strong> $${ev.montoTotal.toFixed(2)} | <strong>Restante:</strong> $${ev.saldoRestante.toFixed(2)} 
+            <span class="status-badge ${isPaid ? 'badge-liquidado' : 'badge-apartado'}" style="font-size:9px; padding:1px 5px;">${ev.estatusPago}</span>
+          </div>
+          ${!isDone ? `
+            <button class="btn-refresh" style="margin-bottom:0; background-color:#dcfce7; color:#15803d; border-color:#86efac; font-weight:800;" onclick="markAsDelivered(${ev.rowIndex})">
+              ✅ Marcar como Entregado
+            </button>
+          ` : '<div style="font-size:11px; color:#16a34a; font-weight:700; text-align:right;">✨ Listo y Entregado</div>'}
+        `;
+        containerElem.appendChild(card);
+      });
+    }
+
+    async function markAsDelivered(rowIndex) {
+      try {
+        await fetch(SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "updateEntregaStatus", rowIndex: rowIndex, nuevoEstatusEntrega: "Entregado" })
+        });
+
+        document.getElementById("successCalAlert").style.display = "block";
+        setTimeout(() => {
+          fetchCalendarEvents();
+          document.getElementById("successCalAlert").style.display = "none";
+        }, 1200);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    // PESTAÑA 5: BALANCE Y MARGEN
+    async function fetchBalanceData() {
+      try {
+        const res = await fetch(SCRIPT_URL + "?action=getBalance");
+        const json = await res.json();
+        if (json.status === "success") {
+          document.getElementById("balIngresosText").textContent = "$" + json.ingresosTotales.toFixed(2);
+          document.getElementById("balGastosText").textContent = "$" + json.gastosTotales.toFixed(2);
+          document.getElementById("balUtilidadText").textContent = "$" + json.utilidadNeta.toFixed(2);
+          document.getElementById("balMargenText").textContent = json.margen.toFixed(1) + "%";
+        }
+      } catch (err) {
+        console.error("Error al obtener balance:", err);
       }
     }
   </script>
